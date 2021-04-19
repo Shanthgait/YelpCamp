@@ -6,6 +6,7 @@ const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
+const Review = require('./models/reviews');
 const {campgroundSchema} = require('./schemas.js');
 
 //connect to mongo db
@@ -96,6 +97,17 @@ app.use((err, req, res, next) => {
     res.status(statusCode);
     res.render('campgrounds/error', {err});
 });
+
+app.post('/campgrounds/:id/reviews', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const {body, rating} = req.body.review;
+    const review = new Review({body, rating});
+    const campground = await Campground.findById(id);
+    campground.reviews.push(review);
+    await review.save();
+    await campground.save();
+    res.redirect(`/campgrounds/${campground._id}`);
+}))
 
 app.listen(3000, () => {
     console.log("Yelp Server listening on port 3000");
