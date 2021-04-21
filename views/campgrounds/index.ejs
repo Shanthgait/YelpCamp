@@ -1,9 +1,9 @@
 <%layout('layouts/boilerplate')%>
     <h1 class="mb-3">All Campgrounds</h1>
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <a class = "edit-link" href="/campgrounds/new">Add a Campground</a>
-    </div>
-        <% for(let campground of campgrounds){ %>
+    </div> -->
+        <% for(let campground of campgrounds.reverse()){ %>
             <div class="card mb-3">
                 <div class="row">
                 <div class="col-md-4">
@@ -16,11 +16,11 @@
                         <p class="class-text"> 
                            <small class="text-muted"><%=campground.location%></small>
                         </p>
-                        <a class="btn btn-outline-dark" href="/campgrounds/<%=campground._id%>">View</a>
+                        <a class="btn btn-outline-dark" href="/campgrounds/<%=campground._id%>">Explore</a>
                         <div>
                             <small class="text-muted">Reviews (<%=campground.reviews.length%>)</small>
                         </div>
-                        </div>
+                     </div>
                     </div>       
                 </div>
             </div>

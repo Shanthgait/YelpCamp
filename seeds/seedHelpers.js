@@ -19,7 +19,9 @@ module.exports.descriptors = [
     'Blackbird',
     'Biker',
     'Ranger',
-    'Oak'
+    'Oak',
+    'Langford',
+    'Parchy'
 ]
 
 module.exports.places = [

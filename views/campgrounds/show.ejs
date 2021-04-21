@@ -26,9 +26,12 @@
                             Delete
                         </button>
                     </form>
+                    <a class="card-link btn btn-link edit-button" href="/campgrounds">
+                        Back
+                    </a>
                 </div>
                 <div class="card-footer text-muted">
-                    Posted 4 days ago
+                    Posted <%=getCreatedTime(campground.time.getTime())%> ago
                 </div>
             </div>
         </div>
@@ -55,7 +58,8 @@
                     <h5 class="card-title">Rating: <%=review.rating%></h5>
                     <p class="card-text">Review: <%=review.body%></p>
                     <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                        <button class="btn btn-sm btn-outline-dark">Delete</button>
+                        <span class="review-time"><%=getCreatedTime(review.time.getTime())%></span>
+                        <button class="btn btn-sm btn-link edit-button">Delete</button>
                     </form>
                 </div>
              </div>   

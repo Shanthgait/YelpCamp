@@ -7,6 +7,7 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
 const Review = require('./models/reviews');
+const getCreatedTime = require('./utils/getCreatedTime');
 const {campgroundSchema, reviewSchema} = require('./schemas.js');
 
 //connect to mongo db
@@ -79,7 +80,7 @@ app.post('/campgrounds', validateCampground, catchAsync(async(req, res) => {
 
 app.get('/campgrounds/:id', catchAsync(async(req, res) => {
     const campground = await Campground.findById(req.params.id).populate('reviews');
-    res.render('campgrounds/show', {campground});
+    res.render('campgrounds/show', {campground, getCreatedTime});
 }));
 
 app.get('/campgrounds/:id/edit', catchAsync(async(req, res) => {
@@ -102,7 +103,6 @@ app.delete('/campgrounds/:id', catchAsync(async(req, res) => {
 app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req, res) => {
     const { id } = req.params;
     const {body, rating} = req.body.review;
-    console.log(body, rating);
     const review = new Review({body, rating});
     const campground = await Campground.findById(id);
     campground.reviews.push(review);

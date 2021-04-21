@@ -9,10 +9,11 @@ const CamgroundSchema = new Schema(
         image: String,
         description: String,
         location: String,
+        time : { type : Date, default: Date.now },
         reviews: [{
             type: Schema.Types.ObjectId,
-            ref: 'Review'
-        }]
+            ref: 'Review',
+        }],
     }
 );
 
