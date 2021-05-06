@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Review = require('./reviews');
+const Review = require('./review');
 
 const CamgroundSchema = new Schema(
     {
@@ -9,6 +9,10 @@ const CamgroundSchema = new Schema(
         image: String,
         description: String,
         location: String,
+        author: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
         time : { type : Date, default: Date.now },
         reviews: [{
             type: Schema.Types.ObjectId,
