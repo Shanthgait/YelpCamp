@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config();
+}
+
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -92,8 +96,8 @@ app.use((err, req, res, next) => {
     res.render('campgrounds/error', {err});
 });
 
-app.listen(3000, () => {
-    console.log("Yelp Server listening on port 3000");
+app.listen(process.env.PORT, () => {
+    console.log("Yelp Server started");
 });
 
 
