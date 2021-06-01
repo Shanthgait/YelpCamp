@@ -1,10 +1,12 @@
 mapboxgl.accessToken = mapToken;
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/light-v10',
 center: [78.9629, 20.5937],
 zoom: 4
 });
+
+map.addControl(new mapboxgl.NavigationControl());
  
 map.on('load', function () {
 // Add a new source from our GeoJSON data and
@@ -79,10 +81,10 @@ paint: {
  
 // inspect a cluster on click
 map.on('click', 'clusters', function (e) {
-var features = map.queryRenderedFeatures(e.point, {
+const features = map.queryRenderedFeatures(e.point, {
 layers: ['clusters']
 });
-var clusterId = features[0].properties.cluster_id;
+const clusterId = features[0].properties.cluster_id;
 map.getSource('campgrounds').getClusterExpansionZoom(
 clusterId,
 function (err, zoom) {
@@ -101,15 +103,8 @@ zoom: zoom
 // the location of the feature, with
 // description HTML from its properties.
 map.on('click', 'unclustered-point', function (e) {
-var coordinates = e.features[0].geometry.coordinates.slice();
-var mag = e.features[0].properties.mag;
-var tsunami;
- 
-if (e.features[0].properties.tsunami === 1) {
-tsunami = 'yes';
-} else {
-tsunami = 'no';
-}
+const coordinates = e.features[0].geometry.coordinates.slice();
+const {popUpMarkup} = e.features[0].properties;
  
 // Ensure that if the map is zoomed out such that
 // multiple copies of the feature are visible, the
@@ -120,9 +115,7 @@ coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
  
 new mapboxgl.Popup()
 .setLngLat(coordinates)
-.setHTML(
-'magnitude: ' + mag + '<br>Was there a tsunami?: ' + tsunami
-)
+.setHTML(popUpMarkup)
 .addTo(map);
 });
  
