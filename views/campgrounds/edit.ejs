@@ -1,5 +1,5 @@
 <%layout('layouts/boilerplate')%>
-<div class="row">
+<div class="row mb-3">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-6 offset-3">
         <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validate-form"
@@ -23,7 +23,7 @@
             <div class="mb-3">
                 <label class="form-label" for="price">Price:</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" aria-label="Amount" name="campground[price]"
+                    <input type="text" class="form-control" aria-label="Amount" name="campground[price]"
                         value="<%=campground.price%>" id="price" required>
                     <span class="input-group-text">INR</span>
                     <div class="valid-feedback">
