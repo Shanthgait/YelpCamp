@@ -167,7 +167,8 @@ app.use((err, req, res, next) => {
     res.render('campgrounds/error', {err});
 });
 
-app.listen(process.env.PORT, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
     console.log("Yelp Server started");
 });
 
