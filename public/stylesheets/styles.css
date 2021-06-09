@@ -31,13 +31,34 @@ body{
   right: 12px;
 }
 
-.align-checkbox{
+.img-container{
   position: relative;
-  top: 85px;
-  right: 120px;
+}
+
+.img-container .align-checkbox { 
+  position: absolute; 
+  top: 5px;
+  left: 5px;
+}
+
+.custom-btn {
+  position:relative;
+  bottom: 15px;
 }
 
 .custom-btn:hover{
   background-color: #292727;
   color: #fff;
+}
+
+@media (max-width: 800px){
+  .custom-btn {
+      font-size: 12px;
+  }
+}
+
+@media (max-width: 800px){
+  .edit-button {
+      display: none;
+  }
 }

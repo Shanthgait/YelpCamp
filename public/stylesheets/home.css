@@ -12,27 +12,24 @@ body {
   max-width: 60vw;
 }
 
-.nav-link {
-    padding: 0.25rem 0;
-    font-weight: 700;
-    color: rgba(255,255,255,0.5);
-    margin-left: 1rem;
-    border-bottom: 0.25rem solid transparent;
+.home-btn{
+    color: azure;
 }
 
-.nav-link:hover{
-    color: rgba(255,255,255,0.5);
-    border-bottom-color:rgba(255,255,255,0.5);
+@media (max-width: 800px){
+    .lead {
+        font-size: 12px;
+    }
 }
 
-.nav-link.active {
-    color: white;
-    border-bottom-color:white;
-
+@media (max-width: 800px){
+    .home-btn {
+        font-size: 12px;
+    }
 }
 
-.btn-secondary, .btn-secondary:hover{
-    color: #333;
-    text-shadow: none;
+@media (max-width: 800px){
+    .brand {
+        display: none;
+    }
 }
-
